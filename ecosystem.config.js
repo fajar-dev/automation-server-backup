@@ -1,8 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: "backup-app",
-      script: "./app.js",
+      name: "automation-server-backup",
+      script: "./src/app.js",
       watch: true,
       instances: 1,
       autorestart: true,

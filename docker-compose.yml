@@ -17,4 +17,4 @@ services:
     volumes:
       - /var/log/backup_automation:/app/logs
       - /root/backup:/app/backup
-    restart: unless-stopped
+    restart: always
