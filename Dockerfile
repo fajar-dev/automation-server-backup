@@ -8,8 +8,6 @@ RUN npm install
 
 COPY . .
 
-RUN mkdir -p log
-
 ENV TZ=Asia/Makassar
 
-CMD ["node", "app.js"]
+CMD ["node", "./src/app.js"]

@@ -1,10 +1,10 @@
 {
-  "name": "backup-app",
+  "name": "automation-server-backup",
   "version": "1.0.0",
-  "description": "Automation backup",
+  "description": "This Node.js application performs automatic backups for both FTP files and MySQL database with Cron Jo",
   "main": "app.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/app.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
