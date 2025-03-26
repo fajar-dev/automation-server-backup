@@ -2,7 +2,7 @@ FROM node:20-alpine
 
 RUN apk update && apk add --no-cache \
     mysql-client \
-    ftp
+    lftp
 
 WORKDIR /app
 
