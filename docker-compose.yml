@@ -13,9 +13,8 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
       - TIME_ZONE=${TIME_ZONE}
-      - LOCAL_BACKUP_PATH=backup
+      - LOCAL_BACKUP_PATH=/backup
     volumes:
-      - ./backup:/backup  # Folder backup lokal
       - /var/log/backup_automation:/app/logs
       - /root/backup:/app/backup
     restart: always
