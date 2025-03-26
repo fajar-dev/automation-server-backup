@@ -1,10 +1,8 @@
 FROM node:20-alpine
 
-RUN apk update && apk add --no-cache \
-    mysql-client \
-    lftp
+RUN apk update && apk add --no-cache mysql-client
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
