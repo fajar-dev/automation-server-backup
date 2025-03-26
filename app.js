@@ -74,6 +74,7 @@ async function backupFTPFiles(backupFolder) {
     user: FTP_USER,
     password: FTP_PASSWORD,
     pasv: true 
+
   });
 
   await Promise.all(filePromises);
@@ -110,12 +111,13 @@ async function backupFTPAndMySQL() {
       backupFTPFiles(backupFolder),
       backupDatabase(backupFolder)
     ]);
+    console.log('Backup FTP dan Database selesai.');
   } catch (error) {
     logger.error(`Error during backup process: ${error.message}`);
   }
 }
 
-cron.schedule("*/5 * * * *", () => {
+cron.schedule("0 0 * * *", () => {
   console.log('Running FTP and MySQL backup...');
   backupFTPAndMySQL();
 });

@@ -15,6 +15,6 @@ services:
       - TIME_ZONE=${TIME_ZONE}
       - LOCAL_BACKUP_PATH=/backup
     volumes:
-      - ./backup:/backup
       - /var/log/backup_automation:/app/log
+      - /root/backup:/app/backup
     restart: unless-stopped
