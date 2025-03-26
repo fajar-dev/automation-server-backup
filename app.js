@@ -28,8 +28,9 @@ const logger = winston.createLogger({
   ]
 });
 
-function backupFTPFiles(backupFolder) {
+async function backupFTPFiles(backupFolder) {
   const client = new ftp();
+  const filePromises = [];
 
   client.on('ready', function() {
     console.log('FTP connection ready');
@@ -43,19 +44,25 @@ function backupFTPFiles(backupFolder) {
 
       list.forEach(file => {
         const localFilePath = path.join(backupFolder, file.name);
+        
+        const filePromise = new Promise((resolve, reject) => {
+          client.get(file.name, (err, stream) => {
+            if (err) {
+              logger.error(`Error downloading ${file.name}: ${err.message}`);
+              reject(err);
+              return;
+            }
 
-        client.get(file.name, (err, stream) => {
-          if (err) {
-            logger.error(`Error downloading ${file.name}: ${err.message}`);
-            return;
-          }
-          
-          stream.once('close', () => {
-            console.log(`Downloaded: ${file.name}`);
+            stream.once('close', () => {
+              console.log(`Downloaded: ${file.name}`);
+              resolve();
+            });
+
+            stream.pipe(fs.createWriteStream(localFilePath));
           });
-          
-          stream.pipe(fs.createWriteStream(localFilePath));
         });
+        
+        filePromises.push(filePromise);
       });
 
       client.end();
@@ -65,38 +72,50 @@ function backupFTPFiles(backupFolder) {
   client.connect({
     host: FTP_HOST,
     user: FTP_USER,
-    password: FTP_PASSWORD
+    password: FTP_PASSWORD,
+    pasv: true 
   });
+
+  await Promise.all(filePromises);
 }
 
-function backupDatabase(backupFolder) {
+async function backupDatabase(backupFolder) {
   const timestamp = moment().tz(TIME_ZONE).format("YYYY-MM-DD_HH-mm-ss");
   const backupFile = path.join(backupFolder, `backup-db-${timestamp}.sql`);
-
+  
   const dumpCommand = `mysqldump -h ${DB_HOST} -u ${DB_USER} -p${DB_PASSWORD} ${DB_NAME} > ${backupFile}`;
 
-  exec(dumpCommand, (error, stdout, stderr) => {
-    if (error) {
-      logger.error(`Error during database backup: ${error.message}`);
-      return;
-    }
-    console.log(`Database backup completed: ${backupFile}`);
+  return new Promise((resolve, reject) => {
+    exec(dumpCommand, (error, stdout, stderr) => {
+      if (error) {
+        logger.error(`Error during database backup: ${error.message}`);
+        reject(error);
+        return;
+      }
+      console.log(`Database backup completed: ${backupFile}`);
+      resolve();
+    });
   });
 }
 
-function backupFTPAndMySQL() {
+async function backupFTPAndMySQL() {
   const timestamp = moment().tz(TIME_ZONE).format("YYYY-MM-DD_HH-mm-ss");
   const backupFolder = path.join(LOCAL_BACKUP_PATH, `backup-${timestamp}`);
 
   fs.mkdirSync(backupFolder, { recursive: true });
-
   console.log(`Backup folder created: ${backupFolder}`);
 
-  backupFTPFiles(backupFolder);
-  backupDatabase(backupFolder);
+  try {
+    await Promise.all([
+      backupFTPFiles(backupFolder),
+      backupDatabase(backupFolder)
+    ]);
+  } catch (error) {
+    logger.error(`Error during backup process: ${error.message}`);
+  }
 }
 
-cron.schedule("0 0 * * *", () => {
+cron.schedule("*/5 * * * *", () => {
   console.log('Running FTP and MySQL backup...');
   backupFTPAndMySQL();
 });

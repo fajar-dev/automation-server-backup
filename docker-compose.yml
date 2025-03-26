@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backup_automation
+    environment:
+      - FTP_HOST=${FTP_HOST}
+      - FTP_USER=${FTP_USER}
+      - FTP_PASSWORD=${FTP_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - TIME_ZONE=${TIME_ZONE}
+      - LOCAL_BACKUP_PATH=/backup
+    volumes:
+      - ./backup:/backup
+      - /var/log/backup_automation:/app/log
+    restart: unless-stopped
