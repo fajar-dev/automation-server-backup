@@ -6,8 +6,7 @@ This Node.js application performs automatic backups for both FTP files and MySQL
 
 Make sure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (version 14 or higher)
-- [PM2](https://pm2.keymetrics.io/) (process manager for Node.js)
+- [Node.js](https://nodejs.org/) (version 20 or higher)
 - MySQL (or compatible database system)
 - FTP server (optional, for FTP backups)
 
@@ -18,6 +17,11 @@ Make sure you have the following installed:
 ```bash
 git clone <your-repo-url>
 cd <your-repo-directory>
+```
+
+### 2. Environment configuration
+
+Copy the `.env.example` file and rename it as `.env`. Make sure to configure the `.env` file with the necessary settings.
 
 ### 2. Install Dependencies
 
@@ -25,3 +29,11 @@ Install all the required dependencies for the project:
 
 ```bash
 npm install
+```
+
+### 2. Start the project
+
+```bash
+npm run start
+```
+
