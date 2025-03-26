@@ -1,6 +1,6 @@
 FROM node:20-alpine
 
-RUN apt-get update && apt-get install -y mysql-client
+RUN apt get update && apt get install -y mysql-client
 
 WORKDIR /app
 
