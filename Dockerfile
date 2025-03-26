@@ -1,6 +1,8 @@
 FROM node:20-alpine
 
-RUN apt get update && apt get install -y mysql-client
+RUN apk update && apk add --no-cache \
+    mysql-client \
+    ftp
 
 WORKDIR /app
 
