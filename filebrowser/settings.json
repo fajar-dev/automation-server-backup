@@ -1,0 +1,14 @@
+{
+  "port": 80,
+  "baseURL": "",
+  "address": "",
+  "log": "stdout",
+  "database": "/filebrowser.db",
+  "root": "/srv",
+  "branding": {
+    "name": "SISTNK Backup",
+    "disableExternal": false,
+    "theme": "light",
+    "logo": "/logo.png"
+  },
+}

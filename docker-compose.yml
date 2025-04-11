@@ -23,8 +23,9 @@ services:
     container_name: filebrowser
     volumes:
       - /root/backups:/srv #Change to match your directory
-      - /root/config:/database/filebrowser.db #Change to match your directory
-      - /root/config:/config/settings.json #Change to match your directory
+      - /root/automation-server-backup/filebrowser.db:/database/filebrowser.db
+      - /root/automation-server-backup/settings.json:/config/settings.json
+      - /root/automation-server-backup/logo.svg:/logo.svg
     environment:
       - PUID=$(id -u)
       - PGID=$(id -g)
