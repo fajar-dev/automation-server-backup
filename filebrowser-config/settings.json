@@ -1,0 +1,32 @@
+{
+  "port": 80,
+  "address": "",
+  "log": "stdout",
+  "database": "/database.db",
+  "root": "/srv",
+  "branding": {
+    "name": "Backup Manager",
+    "disableExternal": false,
+    "theme": "dark",
+    "logo": "/logo.svg"
+  },
+  "authMethod": "default",
+  "signup": false,
+  "lockPassword": false,
+  "defaults": {
+    "scope": "/srv",
+    "locale": "en",
+    "viewMode": "mosaic",
+    "singleClick": false,
+    "perm": {
+      "admin": true,
+      "execute": true,
+      "create": true,
+      "rename": true,
+      "modify": true,
+      "delete": true,
+      "share": true,
+      "download": true
+    }
+  }
+}

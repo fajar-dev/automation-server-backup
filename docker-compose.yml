@@ -23,9 +23,9 @@ services:
     container_name: filebrowser
     volumes:
       - /root/backups:/srv #Change to match your directory
-      - /root/automation-server-backup/config/filebrowser.db:/database.db
-      - /root/automation-server-backup/config/settings.json:/etc/filebrowser/settings.json
-      - /root/automation-server-backup/config/logo.svg:/logo.svg
+      - /root/automation-server-backup/filebrowser-config/database.db:/database.db
+      - /root/automation-server-backup/filebrowser-config/settings.json:/etc/filebrowser/settings.json
+      - /root/automation-server-backup/filebrowser-config/logo.svg:/logo.svg
     command: [
       "--database", "/database.db",
       "--config", "/etc/filebrowser/settings.json"
