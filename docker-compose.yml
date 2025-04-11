@@ -25,13 +25,9 @@ services:
       - /root/backups:/srv #Change to match your directory
       - /root/automation-server-backup/filebrowser-config/database.db:/database.db
       - /root/automation-server-backup/filebrowser-config/settings.json:/etc/filebrowser/settings.json
-      - /root/automation-server-backup/filebrowser-config/branding:/branding
     command: [
       "--database", "/database.db",
       "--config", "/etc/filebrowser/settings.json",
-      # "--branding.name", "SISTNK Backup",
-      # "--branding.files", "/branding",
-      # "--branding.disableExternal"
     ]
     environment:
       - PUID=$(id -u)
