@@ -1,32 +1,8 @@
 {
   "port": 80,
+  "baseURL": "",
   "address": "",
   "log": "stdout",
   "database": "/database.db",
-  "root": "/srv",
-  "branding": {
-    "name": "SISTNK Backup",
-    "disableExternal": false,
-    "theme": "dark",
-    "logo": "/srv/logo.png"
-  },
-  "authMethod": "default",
-  "signup": false,
-  "lockPassword": false,
-  "defaults": {
-    "scope": "/srv",
-    "locale": "en",
-    "viewMode": "mosaic",
-    "singleClick": false,
-    "perm": {
-      "admin": true,
-      "execute": true,
-      "create": true,
-      "rename": true,
-      "modify": true,
-      "delete": true,
-      "share": true,
-      "download": true
-    }
-  }
+  "root": "/srv"
 }
