@@ -8,7 +8,7 @@
     "name": "Backup Manager",
     "disableExternal": false,
     "theme": "dark",
-    "logo": "/logo.svg"
+    "logo": "/srv/logo.svg"
   },
   "authMethod": "default",
   "signup": false,

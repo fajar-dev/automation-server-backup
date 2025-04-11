@@ -25,7 +25,7 @@ services:
       - /root/backups:/srv #Change to match your directory
       - /root/automation-server-backup/filebrowser-config/database.db:/database.db
       - /root/automation-server-backup/filebrowser-config/settings.json:/etc/filebrowser/settings.json
-      - /root/automation-server-backup/filebrowser-config/logo.svg:/logo.svg
+      - /root/automation-server-backup/filebrowser-config/logo.svg:/srv/logo.svg
     command: [
       "--database", "/database.db",
       "--config", "/etc/filebrowser/settings.json"
