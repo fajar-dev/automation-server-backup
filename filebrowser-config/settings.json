@@ -5,10 +5,10 @@
   "database": "/database.db",
   "root": "/srv",
   "branding": {
-    "name": "Backup Manager",
+    "name": "SISTNK Backup",
     "disableExternal": false,
     "theme": "dark",
-    "logo": "/srv/logo.svg"
+    "logo": "/srv/logo.png"
   },
   "authMethod": "default",
   "signup": false,
