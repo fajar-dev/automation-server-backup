@@ -29,9 +29,9 @@ services:
     command: [
       "--database", "/database.db",
       "--config", "/etc/filebrowser/settings.json",
-      "--branding.name", "SISTNK Backup",
-      "--branding.files", "/branding",
-      "--branding.disableExternal"
+      # "--branding.name", "SISTNK Backup",
+      # "--branding.files", "/branding",
+      # "--branding.disableExternal"
     ]
     environment:
       - PUID=$(id -u)
